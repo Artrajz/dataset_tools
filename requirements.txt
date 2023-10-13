@@ -1,0 +1,9 @@
+tqdm
+ffmpeg-python
+torch
+torchaudio
+funasr
+modelscope
+hdbscan
+umap
+joblib==1.1.0
