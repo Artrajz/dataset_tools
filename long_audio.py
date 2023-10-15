@@ -30,6 +30,7 @@ def clip(audio_path, rec_result, input_base_path, output_dir="datasets", min_tim
 
     sentences = rec_result['sentences']
     start_time = 0
+    last_end_time = 0
     text = ""
     continue_clip = False
     i = 0
@@ -47,15 +48,20 @@ def clip(audio_path, rec_result, input_base_path, output_dir="datasets", min_tim
     for num, sentence in enumerate(sentences):
         if not continue_clip:
             start_time = sentence['ts_list'][0][0]
-
-        end_time = sentence['ts_list'][-1][1]
+        current_start_time = sentence['ts_list'][0][0]
+        current_end_time = sentence['ts_list'][-1][1]
         text += sentence['text']
-        segment_time = end_time - start_time
+        segment_time = current_end_time - start_time
 
         if segment_time > min_time or num == sentences_num - 1:
             if num == sentences_num - 1:
-                end_time = -1
-            sliced_audio = audio[start_time:end_time]
+                current_end_time = -1
+            if current_start_time - last_end_time >= 1000:
+                silence_segment = AudioSegment.silent(duration=1000)
+                sliced_audio = audio[start_time:last_end_time] + silence_segment + audio[
+                                                                                   current_start_time:current_end_time]
+            else:
+                sliced_audio = audio[start_time:current_end_time]
             output_file = os.path.join(output_dir, f"{file_name}_{i}{file_extension}")
             sliced_audio.export(output_file, format="wav")
             lines.append(f"{output_file}|{speaker_name}|ZH|{text}\n")
@@ -63,6 +69,7 @@ def clip(audio_path, rec_result, input_base_path, output_dir="datasets", min_tim
             continue_clip = False
             i += 1
         else:
+            last_end_time = current_end_time
             continue_clip = True
 
     return lines
