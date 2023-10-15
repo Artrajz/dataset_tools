@@ -17,13 +17,15 @@ conda create -n datasets_tools python==3.8
 conda activate datasets_tools
 ```
 
-使用cuda加速，需要提前装好cuda环境
+使用cuda加速，需要提前装好cuda环境。
+
+安装ffmpeg
 
 ```
-pip install torch torchvision torchaudio --index-url https://download.pytorch.org/whl/cu117
+pip install torch==2.0.1+cu117 torchvision==0.15.2+cu117 torchaudio==2.0.2 --index-url https://download.pytorch.org/whl/cu117
 pip install funasr -i https://mirror.sjtu.edu.cn/pypi/web/simple
 pip install modelscope -i https://pypi.tuna.tsinghua.edu.cn/simple
-pip install hdbscan umap joblib==1.1.0 --index-url https://pypi.tuna.tsinghua.edu.cn/simple --extra-index-url https://pypi.artrajz.cn/simple --prefer-binary
+pip install hdbscan umap joblib==1.1.0 ffmpeg-python --index-url https://pypi.tuna.tsinghua.edu.cn/simple --extra-index-url https://pypi.artrajz.cn/simple --prefer-binary
 ```
 
 依赖可能没写完整，缺啥装啥
