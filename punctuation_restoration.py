@@ -36,9 +36,7 @@ def punctuation_restoration(input_path):
         new_line = "|".join(parts) + "\n"
         updated_lines.append(new_line)
 
-    directory, filename = os.path.split(input_path)
-    filename = filename.split('.')[0] + ".list"
-    save_path = os.path.join(directory, filename)
+    save_path = input_path
     with open(save_path, 'w', encoding='utf8') as out_file:
         out_file.writelines(updated_lines)
     return save_path

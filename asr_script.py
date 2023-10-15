@@ -45,20 +45,20 @@ def funasr_audio_files(input_path, max_processes=2):
         all_audio_files.extend(audio_files)
         for audio_file in audio_files:
             subdir_map[audio_file] = subdir_name
-    
+
     # 多进程
     with ProcessPoolExecutor(max_processes) as executor:
         speaker_names = [subdir_map[audio] for audio in all_audio_files]
         results = list(tqdm(executor.map(process_audio, all_audio_files, speaker_names), total=len(all_audio_files)))
 
-    for text, audio_file in zip(results, all_audio_files):
-        subdir_name = subdir_map[audio_file]
-        saved_filename = os.path.join(input_path, f"{subdir_name}.txt")
-        with open(saved_filename, 'a', encoding='utf8') as f:
-            f.write(text)
+    save_path = "all.txt"
+    with open(save_path, 'w', encoding='utf8') as f:
+        f.writelines(results)
+
+    return save_path
 
 
 if __name__ == '__main__':
-    input_base_path = r"datasets_processed"
+    input_base_path = r"datasets"
     funasr_audio_files(input_base_path)
     print(f"处理完成")
