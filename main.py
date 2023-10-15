@@ -8,8 +8,8 @@ if __name__ == '__main__':
 
     # 重采样+格式化为wav
     print("重采样+格式化为wav")
-    resample_and_reformat_module = importlib.import_module('resample_and_reformat')
-    processed_path = resample_and_reformat_module.resample_and_reformat(input_base_path,output_path)
+    convert_module = importlib.import_module('convert')
+    processed_path = convert_module.convert(input_base_path,output_path)
     print(processed_path)
     del sys.modules['resample_and_reformat']
 
