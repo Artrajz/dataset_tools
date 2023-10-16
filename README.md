@@ -6,7 +6,13 @@
 
 任务2：重采样和格式转换->标注（带标点）和将长音视频切分短音频->简单清洗
 
-推荐一个切成短音频的项目[Dataset_Generator_For_VITS](https://github.com/Fatfish588/Dataset_Generator_For_VITS)
+
+
+也可以尝试群友的项目
+
+[Dataset_Generator_For_VITS](https://github.com/Fatfish588/Dataset_Generator_For_VITS)
+
+[otty-tts-auto_datalabeling](https://github.com/OttyAI/otty-tts-auto_datalabeling)
 
 # 安装依赖
 
@@ -33,3 +39,6 @@ pip install hdbscan umap joblib==1.1.0 ffmpeg-python --index-url https://pypi.tu
 # 使用
 
 可以分开执行需要的脚本，也可以直接运行main.py全部执行
+
+
+
