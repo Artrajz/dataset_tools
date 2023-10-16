@@ -1,4 +1,4 @@
-自用的一些小脚本，针对Bert_VITS2的中文，稍微改改输出格式也可以用在其他VITS，有些参数写死但懒得改了……
+自用的一些小脚本，针对Bert-VITS2的中文，稍微改改输出格式也可以用在其他VITS，有些参数写死但懒得改了……
 
 使用的是FunASR以及modelscope模型仓库
 
@@ -8,7 +8,7 @@
 
 
 
-也可以尝试群友的项目
+也可以尝试其他佬的项目
 
 [Dataset_Generator_For_VITS](https://github.com/Fatfish588/Dataset_Generator_For_VITS)
 
